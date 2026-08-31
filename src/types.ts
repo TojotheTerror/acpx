@@ -214,6 +214,13 @@ export type AcpClientOptions = {
   terminal?: boolean;
   suppressSdkConsoleErrors?: boolean;
   verbose?: boolean;
+  /**
+   * Overrides the default TTY y/N prompt TerminalManager uses to confirm a
+   * terminal-execution request. Lets an embedder (e.g. a non-interactive
+   * runtime consumer) supply its own confirmation UI/policy instead of
+   * blocking on stdin.
+   */
+  confirmExecute?: (commandLine: string) => Promise<boolean>;
   sessionOptions?: {
     model?: string;
     allowedTools?: string[];

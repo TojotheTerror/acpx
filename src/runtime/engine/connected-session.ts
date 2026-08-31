@@ -47,6 +47,7 @@ export type WithConnectedSessionOptions<T> = {
     req: AcpPermissionRequest,
     ctx: { signal: AbortSignal },
   ) => Promise<AcpPermissionDecision | undefined>;
+  confirmExecute?: (commandLine: string) => Promise<boolean>;
   authCredentials?: Record<string, string>;
   authPolicy?: AuthPolicy;
   fs?: boolean;
@@ -105,6 +106,7 @@ export async function withConnectedSession<T>(
       permissionMode: options.permissionMode ?? "approve-reads",
       nonInteractivePermissions: options.nonInteractivePermissions,
       onPermissionRequest: options.onPermissionRequest,
+      confirmExecute: options.confirmExecute,
       authCredentials: options.authCredentials,
       authPolicy: options.authPolicy,
       fs: options.fs,
@@ -120,6 +122,7 @@ export async function withConnectedSession<T>(
       permissionMode: options.permissionMode ?? "approve-reads",
       nonInteractivePermissions: options.nonInteractivePermissions,
       onPermissionRequest: options.onPermissionRequest,
+      confirmExecute: options.confirmExecute,
       authCredentials: options.authCredentials,
       authPolicy: options.authPolicy,
       fs: options.fs,

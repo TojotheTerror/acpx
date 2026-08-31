@@ -668,6 +668,7 @@ export class AcpRuntimeManager {
       permissionMode: this.options.permissionMode,
       nonInteractivePermissions: this.options.nonInteractivePermissions,
       onPermissionRequest: this.options.onPermissionRequest,
+      confirmExecute: this.options.confirmExecute,
       verbose: this.options.verbose,
       timeoutMs: this.options.timeoutMs,
       resumePolicy: resumePolicyForSessionMode(sessionMode),
@@ -718,6 +719,7 @@ export class AcpRuntimeManager {
       permissionMode: this.options.permissionMode,
       nonInteractivePermissions: this.options.nonInteractivePermissions,
       onPermissionRequest: this.options.onPermissionRequest,
+      confirmExecute: this.options.confirmExecute,
       verbose: this.options.verbose,
       sessionOptions: input.sessionOptions,
     });
@@ -977,6 +979,7 @@ export class AcpRuntimeManager {
       permissionMode: this.options.permissionMode,
       nonInteractivePermissions: this.options.nonInteractivePermissions,
       onPermissionRequest: this.options.onPermissionRequest,
+      confirmExecute: this.options.confirmExecute,
       verbose: this.options.verbose,
       sessionOptions: sessionOptionsFromRecord(record),
     });
@@ -1415,6 +1418,7 @@ export class AcpRuntimeManager {
         permissionMode: this.options.permissionMode,
         nonInteractivePermissions: this.options.nonInteractivePermissions,
         onPermissionRequest: this.options.onPermissionRequest,
+        confirmExecute: this.options.confirmExecute,
         verbose: this.options.verbose,
       });
 

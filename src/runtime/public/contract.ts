@@ -305,6 +305,14 @@ export type AcpRuntimeOptions = {
     req: AcpPermissionRequest,
     ctx: { signal: AbortSignal },
   ) => Promise<AcpPermissionDecision | undefined>;
+  /**
+   * Overrides the default TTY y/N prompt used to confirm a terminal-
+   * execution request (distinct from onPermissionRequest, which covers
+   * session-level ACP permission requests). Without this, an embedder
+   * driving the runtime non-interactively will block on stdin the first
+   * time an agent tries to run a shell command.
+   */
+  confirmExecute?: (commandLine: string) => Promise<boolean>;
 };
 
 export type AcpFileSessionStoreOptions = {
