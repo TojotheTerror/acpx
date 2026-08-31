@@ -1343,6 +1343,31 @@ test("AcpClient close resets in-memory state and shuts down terminal manager", a
   assert.equal(internals.closing, true);
 });
 
+test("client threads confirmExecute through to its terminal manager", () => {
+  let called = false;
+  const client = makeClient({
+    confirmExecute: async () => {
+      called = true;
+      return true;
+    },
+  });
+  const internals = asInternals(client) as ClientInternals & {
+    terminalManager: { usesDefaultConfirmExecute: boolean };
+  };
+
+  assert.equal(internals.terminalManager.usesDefaultConfirmExecute, false);
+  assert.equal(called, false);
+});
+
+test("client falls back to the default confirmExecute when none is supplied", () => {
+  const client = makeClient();
+  const internals = asInternals(client) as ClientInternals & {
+    terminalManager: { usesDefaultConfirmExecute: boolean };
+  };
+
+  assert.equal(internals.terminalManager.usesDefaultConfirmExecute, true);
+});
+
 function makeClient(
   overrides: Partial<ConstructorParameters<typeof AcpClient>[0]> = {},
 ): AcpClient {

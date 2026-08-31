@@ -474,6 +474,7 @@ export class AcpClient {
       cwd: this.options.cwd,
       permissionMode: this.options.permissionMode,
       nonInteractivePermissions: this.options.nonInteractivePermissions,
+      confirmExecute: this.options.confirmExecute,
       onOperation: (operation) => {
         this.eventHandlers.onClientOperation?.(operation);
       },
